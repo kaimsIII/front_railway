@@ -29,10 +29,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-@zhb4gusmuvqe#
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.ngrok-free.app',  # Permite todos los subdominios de ngrok-free.app
-    '.railway.app', # Add your Railway app domain here
+    "localhost",
+    "127.0.0.1",
+    ".railway.app",
+    ".up.railway.app"
 ]
 # If you have a custom domain on Railway, add it here too.
 # e.g., 'yourcustomdomain.com'
@@ -87,10 +87,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='postgres://user:password@host:port/dbname', conn_max_age=600)
 }
 
 # Production database configuration (PostgreSQL on Railway)
